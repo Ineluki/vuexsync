@@ -33,6 +33,7 @@ class Hub extends EventEmitter {
 		this.on('data',sender);
 		stream.on('close',() => {
 			this.off('data',sender);
+			stream.unpipe(this);
 			if (ws) this.socketIndex.delete( ws );
 			debug("socketIndex",this.socketIndex.size);
 		})
@@ -43,7 +44,7 @@ class Hub extends EventEmitter {
 	setSyncAuthority(store) {
 		this.syncAuthority = store;
 	}
-	
+
 	getSyncState() {
 		if (this.syncAuthority) {
 			return cloneDeep(this.syncAuthority.state);

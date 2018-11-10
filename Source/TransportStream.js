@@ -40,7 +40,9 @@ class TransportStream extends Duplex {
 
 	_send(action) {
 		if (this[kSource].readyState === 1) {
-			this[kSource].send(JSON.stringify(action));
+			let msg = JSON.stringify(action);
+			this.emit("send",msg);
+			this[kSource].send(msg);
 		} else {
 			this.buffer.push(action);
 		}
