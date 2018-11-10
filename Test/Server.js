@@ -24,5 +24,6 @@ app.ws.use(async function(ctx,nxt) {
 
 const plugin = Sync.getServerPlugin();
 const store = Store([plugin]);
+Sync.Pool.getHub().setSyncAuthority(store);
 
 app.listen(8080);

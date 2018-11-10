@@ -4,11 +4,11 @@ const Pool = require('./Source/Pool')
 const TransportStream = require('./Source/TransportStream')
 
 function getBrowserPlugin(ws) {
-	return Plugin( new TransportStream(ws) );
+	return Plugin( new TransportStream(ws), {} );
 }
 
 function getServerPlugin() {
-	return Plugin( Pool.getHub() );
+	return Plugin( Pool.getHub(), { initSync: false } );
 }
 
 module.exports = {

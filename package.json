@@ -15,6 +15,7 @@
     "koa-session": "^5.9.0",
     "koa-static": "^5.0.0",
     "koa-websocket": "^5.0.1",
+    "lodash.clonedeep": "^4.5.0",
     "lodash.debounce": "^4.0.8",
     "reconnecting-websocket": "^4.0.0-rc5",
     "vue": "^2.5.17",
