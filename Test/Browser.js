@@ -1,8 +1,8 @@
 const debug = require('debug')('vuexsync');
-import ReconnectingWebSocket from 'reconnecting-websocket';
-import createLogger from 'vuex/dist/logger'
-import Store from './Store.js';
-import Sync from '../index';
+const ReconnectingWebSocket = require('reconnecting-websocket');
+const createLogger = require('vuex/dist/logger');
+const Store = require('./Store.js');
+const Sync = require('../index');
 
 const socket = new ReconnectingWebSocket('ws://'+document.location.host+'/');
 

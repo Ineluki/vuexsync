@@ -11,29 +11,23 @@
   "license": "ISC",
   "dependencies": {
     "debug": "^4.0.1",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.debounce": "^4.0.8"
+  },
+  "devDependencies": {
+    "browserify": "^16.2.2",
+    "watchify": "^3.11.0",
     "koa": "^2.5.3",
     "koa-session": "^5.9.0",
     "koa-static": "^5.0.0",
     "koa-websocket": "^5.0.1",
-    "lodash.clonedeep": "^4.5.0",
-    "lodash.debounce": "^4.0.8",
     "reconnecting-websocket": "^4.0.0-rc5",
     "vue": "^2.5.17",
     "vuex": "^3.0.1"
   },
-  "devDependencies": {
-    "@babel/core": "^7.1.0",
-    "babel-preset-env": "^1.7.0",
-    "babelify": "^10.0.0",
-    "browserify": "^16.2.2",
-    "vueify": "^9.4.1",
-    "watchify": "^3.11.0"
-  },
-  "browserify": {
-    "transform": [
-      "vueify",
-      "babelify"
-    ]
+  "peerDependencies": {
+    "vue": "^2.5.17",
+    "vuex": "^3.0.1"
   },
   "browser": {
     "vue": "vue/dist/vue.common.js"
