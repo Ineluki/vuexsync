@@ -12,7 +12,8 @@ class PluginStream extends Duplex {
 		this[kSource] = store;
 
 		store.subscribe(mutation => {
-			if (this.remoteCommit) {
+			if (this.remoteCommit === true) {
+				//@TODO test if this is fool-proof
 				this.remoteCommit = false;
 				return;
 			}
@@ -28,16 +29,12 @@ class PluginStream extends Duplex {
 	_write(data, encoding, callback) {
 		if (data.from !== this[kSource]) {
 			this.remoteCommit = true;
-			store.commit(data.action.type,data.action.payload)
+			this[kSource].commit(data.action.type,data.action.payload)
 		}
 		callback();
 	}
 
-	_read(size) {
-		// this[kSource].fetchSomeData(size, (data, encoding) => {
-		// this.push(Buffer.from(data, encoding));
-		// });
-	}
+	_read(size) { }
 }
 
 function myPlugin (stream) {

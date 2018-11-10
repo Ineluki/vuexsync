@@ -4,7 +4,7 @@ const connectedClients = new Set();
 
 const hub = new Hub();
 
-function add(ws) {
+function addSocket(ws) {
 	let stream = new TransportStream(ws);
 	connectedClients.add(stream);
 	ws.on('close',() => {
@@ -20,8 +20,12 @@ function forEach(cb) {
 	connectedClients.forEach(cb);
 }
 
+function getHub() {
+	return hub;
+}
 
 module.exports = {
-	add,
-	forEach
+	addSocket,
+	forEach,
+	getHub
 }

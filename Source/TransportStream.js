@@ -23,20 +23,7 @@ class TransportStream extends Duplex {
 			source.addEventListener('close',() => {
 				this.destroy()
 			})
-		} else {
-			source.on('message',(msg) => {
-				debug("on-message-on",msg);
-				let d = msg;
-				this.push({
-					from: source,
-					action: d
-				});
-			})
-			source.on('close',() => {
-				this.destroy()
-			})
 		}
-
 
 	}
 
@@ -47,11 +34,7 @@ class TransportStream extends Duplex {
 		callback();
 	}
 
-	_read(size) {
-		// this[kSource].fetchSomeData(size, (data, encoding) => {
-		// this.push(Buffer.from(data, encoding));
-		// });
-	}
+	_read(size) { }
 }
 
 module.exports = TransportStream;

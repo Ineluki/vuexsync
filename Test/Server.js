@@ -3,9 +3,8 @@ const serve = require('koa-static');
 const websockify = require('koa-websocket');
 const debug = require('debug')('vuexsync');
 const path = require('path');
-const Store = require('../Source/Store');
-const Plugin = require('../Source/Plugin');
-const Pool = require('../Source/Pool');
+const Store = require('./Store');
+const Sync = require('../index');
 
 Error.stackTraceLimit = Infinity;
 
@@ -19,21 +18,11 @@ app.use( serve( path.normalize(__dirname+'/../Web/'),{
 	defer : true
 }) );
 
-
-const propagate = (from,action) => {
-	Pool.forEach(client => {
-		if (client === from) return;
-		console.log("@TODO propagating to client",client);
-		client.websocket.send(JSON.stringify(action));
-	})
-}
-
-
 app.ws.use(async function(ctx,nxt) {
-
-	let stream = Pool.add(ctx.websocket);
-
+	Sync.Pool.addSocket(ctx.websocket);
 });
 
+const plugin = Sync.getServerPlugin();
+const store = Store([plugin]);
 
 app.listen(8080);
