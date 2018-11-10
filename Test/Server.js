@@ -18,12 +18,14 @@ app.use( serve( path.normalize(__dirname+'/../Web/'),{
 	defer : true
 }) );
 
-app.ws.use(async function(ctx,nxt) {
-	Sync.Pool.addSocket(ctx.websocket);
-});
-
-const plugin = Sync.getServerPlugin();
+const hub = new Sync.Hub();
+const plugin = Sync.Plugin( hub, { initSync: false } );
 const store = Store([plugin]);
-Sync.Pool.getHub().setSyncAuthority(store);
+hub.setSyncAuthority(store);
+
+app.ws.use(async function(ctx,nxt) {
+	const stream = new Sync.TransportStream(ctx.websocket);
+	stream.pipe(hub).pipe(stream);
+});
 
 app.listen(8080);

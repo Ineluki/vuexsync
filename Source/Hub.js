@@ -2,6 +2,7 @@ const { Duplex } = require('stream');
 const { EventEmitter } = require('events');
 const debug = require('debug')('vuesync');
 const cloneDeep = require('lodash.clonedeep');
+const TransportStream = require('./TransportStream');
 
 class Hub extends EventEmitter {
 
@@ -42,15 +43,18 @@ class Hub extends EventEmitter {
 	setSyncAuthority(store) {
 		this.syncAuthority = store;
 	}
+	
 	getSyncState() {
 		if (this.syncAuthority) {
 			return cloneDeep(this.syncAuthority.state);
 		}
 		throw new Error("no sync authority set");
 	}
+
 	getStream(ws) {
 		return this.socketIndex.get(ws);
 	}
+
 	runSync(request) {
 		let stream = this.getStream(request.from);
 		let state = this.getSyncState();

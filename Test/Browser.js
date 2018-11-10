@@ -6,9 +6,7 @@ const Sync = require('../index');
 
 const socket = new ReconnectingWebSocket('ws://'+document.location.host+'/');
 
-//socket.on = socket.addEventListener;
-
-const plugin = Sync.getBrowserPlugin(socket);
+const plugin = Sync.Plugin( new Sync.TransportStream(socket), { initSync: true } );
 const store = Store([plugin,createLogger()]);
 
 window.store = store;
