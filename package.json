@@ -1,13 +1,20 @@
 {
-  "name": "vuexsync",
-  "version": "1.0.0",
-  "description": "vuex sync test",
+  "name": "vuex2vuex",
+  "version": "0.1.0",
+  "description": "Sync different vuex stores on clients and servers",
   "main": "index.js",
   "scripts": {
-
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["vue","vuex","sync","end-to-end"],
+  "author": "Stormking <sturmspitze@googlemail.com>",
+  "directories": {
+    "lib": "Source"
+  },
+  "homepage": "https://github.com/Ineluki/vuexsync",
+  "repository": {
+	"type": "git",
+	"url": "git://github.com/Ineluki/vuexsync.git"
+  },
   "license": "ISC",
   "dependencies": {
     "debug": "^4.1.0",

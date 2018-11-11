@@ -1,4 +1,5 @@
-# vuex-sync
+# vuex2vuex sync util
 
+Sync different vuex stores with streams and websockets.
 
-See Test/ for a simple example usage with koa and websockets.
+Use an authoritative store on the server for sync setup.
